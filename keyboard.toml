@@ -7,6 +7,9 @@ product_id = 0x4643
 manufacturer = "RMK"
 chip = "rp2040"
 
+[dependency]
+rmk = { version = "0.3.1" } 
+
 [matrix]
 # Row and col pins are mandatory
 row_pins = ["PIN_6", "PIN_7", "PIN_8", "PIN_9"]
