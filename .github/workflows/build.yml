@@ -1,6 +1,12 @@
+name: Build RMK firmware
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "**"
+
 jobs:
   build:
-    # Change from @v0.3.1 to @rmk-v0.8.2
     uses: haobogu/rmk/.github/workflows/user_build.yml@rmk-v0.8.2
     with:
       keyboard_toml_path: "keyboard.toml"
