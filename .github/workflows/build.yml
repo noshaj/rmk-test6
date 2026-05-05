@@ -6,7 +6,25 @@ on:
       - "**"
 
 jobs:
+  # Job 1: Prepare the environment and fix the dependency
+  patch_dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Force compatible dependency version
+        run: cargo update -p embedded-io --precise 0.6.1
+      # Save the fixed state so the next job can use it
+      - name: Cache cargo state
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            Cargo.lock
+            ~/.cargo/registry
+          key: rmk-patch-${{ github.run_id }}
+
+  # Job 2: Run the actual RMK build
   build:
+    needs: patch_dependencies
     uses: haobogu/rmk/.github/workflows/user_build.yml@main
     with:
       keyboard_toml_path: "keyboard.toml"
