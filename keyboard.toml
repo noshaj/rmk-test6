@@ -8,7 +8,8 @@ manufacturer = "RMK"
 chip = "rp2040"
 
 [dependency]
-rmk = { version = "0.3.1" } 
+rmk = { version = "0.3.1" } # This version is fine for rmk-v0.8.2
+
 
 [matrix]
 # Row and col pins are mandatory
